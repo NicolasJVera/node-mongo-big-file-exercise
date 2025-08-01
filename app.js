@@ -53,4 +53,14 @@ app.use(morgan('[:worker] :remote-addr (:user-agent) :host - :method :url HTTP/:
 app.use('/', route);
 /* ROUTES */
 
+/* MONGODB */
+db.on('connected', () => {
+    console.log('✅ Conectado a MongoDB Atlas');
+});
+
+mongoose.connection.on('error', (err) => {
+    console.error('❌ Error de conexión a MongoDB:', err);
+});
+/* MONGODB */
+
 app.listen(PORT, () => console.info(`ReachOut Exercise listening on port ${PORT} and environment ${process.env.NODE_ENV}! - Worker ${process.pid}`));
